@@ -38,10 +38,7 @@ var addRow = function addRow() {
   document.getElementById("email").value = "";
   document.getElementById("number").value = "";
   document.getElementById("tableDisplay").value = "";
-}; // let delRow = (x) => {
-//   document.getElementById("tableDisplay").deleteRow(x.parentElement.parentElement.rowIndex);
-// }
-
+};
 
 document.getElementById("tableDisplay").addEventListener("click", function (event) {
   if (event.target.matches("#deleteBtn")) {
@@ -52,7 +49,12 @@ document.getElementById("tableDisplay").addEventListener("click", function (even
 document.getElementById("tableDisplay").addEventListener("click", function (event) {
   if (event.target.matches("#editBtn")) {
     var row = event.target.closest("tr");
-    row.setAttribute("contenteditable", "true");
+
+    for (var i = 0; i <= 3; i++) {
+      row.cells[i].setAttribute("contenteditable", "true");
+      row.cells[i].style.backgroundColor = "#D0D3D4";
+    }
+
     alert("Click on the text you want to edit!");
     row.cells[4].innerHTML = "<button type=\"button\" class=\"btn btn-primary\" id=\"saveBtn\"> Save </button>";
   }
@@ -60,7 +62,12 @@ document.getElementById("tableDisplay").addEventListener("click", function (even
 document.getElementById("tableDisplay").addEventListener("click", function (event) {
   if (event.target.matches("#saveBtn")) {
     var row = event.target.closest("tr");
-    row.setAttribute("contenteditable", "false");
+
+    for (var i = 0; i <= 3; i++) {
+      row.cells[i].setAttribute("contenteditable", "false");
+      row.cells[i].style.backgroundColor = "";
+    }
+
     alert("Row data changed!");
     row.cells[4].innerHTML = "\n      <button type=\"button\" class=\"btn btn-warning\" id=\"editBtn\"> Edit </button>\n      <button type=\"button\" class=\"btn btn-danger\" id=\"deleteBtn\"> Delete </button>";
   }
