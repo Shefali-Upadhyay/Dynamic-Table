@@ -44,10 +44,6 @@ let addRow = () => {
   document.getElementById("tableDisplay").value = "";
 };
 
-// let delRow = (x) => {
-//   document.getElementById("tableDisplay").deleteRow(x.parentElement.parentElement.rowIndex);
-// }
-
 document.getElementById("tableDisplay").addEventListener("click", (event) => {
   if (event.target.matches("#deleteBtn")) {
     let row = event.target.closest("tr");
@@ -58,7 +54,11 @@ document.getElementById("tableDisplay").addEventListener("click", (event) => {
 document.getElementById("tableDisplay").addEventListener("click", (event) => {
   if (event.target.matches("#editBtn")) {
     let row = event.target.closest("tr");
-    row.setAttribute("contenteditable", "true");
+    for(let i = 0; i <= 3 ; i++)
+    {
+      row.cells[i].setAttribute("contenteditable", "true");
+      row.cells[i].style.backgroundColor = "#D0D3D4";
+    }
     alert("Click on the text you want to edit!");
     row.cells[4].innerHTML = `<button type="button" class="btn btn-primary" id="saveBtn"> Save </button>`;
   }
@@ -67,7 +67,11 @@ document.getElementById("tableDisplay").addEventListener("click", (event) => {
 document.getElementById("tableDisplay").addEventListener("click", (event) => {
   if (event.target.matches("#saveBtn")) {
     let row = event.target.closest("tr");
-    row.setAttribute("contenteditable", "false");
+    for(let i = 0; i <= 3 ; i++)
+    {
+      row.cells[i].setAttribute("contenteditable", "false");
+      row.cells[i].style.backgroundColor = "";
+    }
     alert("Row data changed!");
     row.cells[4].innerHTML = `
       <button type="button" class="btn btn-warning" id="editBtn"> Edit </button>
